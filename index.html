@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Library Storage - By Wulfen</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="sidebar">
+      <div class="sidebar-header">My Library</div>
+      <div class="filter-menu">Filter by:
+        <div><button id="filter-all" class="filter-btn">- Show All</button></div>
+        <div><button id="filter-read" class="filter-btn">‣ Read (✔)</button></div>
+        <div><button id="filter-unread" class="filter-btn">‣ Not Read (❌)</button></div>
+        <div><button id="filter-reading" class="filter-btn">‣ Reading (📖)</button></div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="topbar"></div>
+      <div class="books-container">
+        <div class="book-add"><button class="add-btn">+</button></div>
+      </div>
+    </div>
+
+    <div class="form-popup">
+      <div class="book-form-container">
+ 
+        <div class="form-header"><br />Add a Book</div>
+ 
+        <div class="book-form">
+          <form id="form1">
+            <div class="cover-preview-container">Cover
+              <div class="cover-preview"></div>
+              <div><span style="font-size: small">Or enter the link to the cover image:</span> <br /><input
+                  class="input-field" id="url" type="url" placeholder="https://"></div>
+            </div>
+            <div>
+              <label for="title"> Title </label><br />
+              <input class="input-field" type="text" id="title" name="title" placeholder="Enter the book title." required>
+            </div>
+            <div>
+              <label for="author"> Author</label><br />
+              <input class="input-field" type="text" id="author" name="author" placeholder="Enter the Author." required>
+            </div>
+            <div>
+              <label for="pages"> Pages</label><br />
+              <input class="input-field" type="number" id="pages" name="pages" min="1" placeholder="0" required>
+            </div>
+            <div>
+              <label for="isbn"> ISBN <span style="font-size: small"><i><sup><span
+                        title="ISBN is an unique book identifier and allows the library to automatically search for a cover.">what
+                        is
+                        this?</span></sup></i></span></label><br />
+              <input class="input-field" type="text" id="isbn" name="isbn" placeholder="(optional)">
+            </div>
+            <div class="radio-choices">
+              <label for="read">Read</label>
+              <input id="read" class="radio-button" type="radio" name="status" value="read" required>
+              <label for="unread">Not Read</label>
+              <input id="unread" class="radio-button" type="radio" name="status" value="unread" required>
+              <label for="reading">Reading</label>
+              <input id="reading" class="radio-button" type="radio" name="status" value="reading" required>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-footer">
+          <button id="form-add-btn" type="submit" class="form-btn" form="form1">Add</button>
+          <button id="cancel-btn" class="form-btn">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
