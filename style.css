@@ -181,7 +181,8 @@ html, body {
   width: 100px;
   height: 100px;
   background: inherit;
-  border-radius: 100px;
+  border-radius: 5px;
+  border: none;
   font-size: 4em;
   outline: none;
   transform: translate(-50%, -50%);
