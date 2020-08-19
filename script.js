@@ -22,9 +22,16 @@ Book.prototype.toggleStatus = function () {
 }
 
 // Initalize library variables.
-let myLibrary = [];
-const container = document.querySelector('.books-container');
 
+let myLibrary;
+let localLibrary = window.localStorage.getItem('library');
+if (localLibrary == null) {
+  console.log(localLibrary);
+  myLibrary = [];
+} else {
+  myLibrary = JSON.parse(window.localStorage.getItem('library')).map(item => new Book(item.title, item.author, item.pages, item.isbn, item.read, item.bookURL));
+  render();
+}
 
 // Display and Hide the "Add a Book" form.
 const popup = document.querySelector('.form-popup');
@@ -96,6 +103,7 @@ isbnField.addEventListener('change', function () {
 function addBookToLibrary(title, author, pages, isbn, read, bookURL) {
   let book = new Book(title, author, pages, isbn, read, bookURL);
   myLibrary.push(book);
+  window.localStorage.setItem('library', JSON.stringify(myLibrary)); // Save to local storage.
 }
 
 // ##
@@ -105,6 +113,7 @@ function addBookToLibrary(title, author, pages, isbn, read, bookURL) {
 // Display the books in our HTML
 
 function render(optionalFilter) {
+  const container = document.querySelector('.books-container');
 
   // Clear our space first.
   const existingDivs = document.querySelectorAll('[data-book]');
@@ -222,6 +231,7 @@ function render(optionalFilter) {
     button.addEventListener('click', function () {
       let index = button.getAttribute('data-bookstatus');
       let x = myLibrary[index].toggleStatus();
+      window.localStorage.setItem('library', JSON.stringify(myLibrary)); // Update our local storage after updating.
 
       switch (x) {
         case 1:
@@ -249,6 +259,7 @@ function render(optionalFilter) {
       const bookToRemove = document.querySelector(`div[data-book='${index}']`);
       bookToRemove.remove();  // Remove it from the DOM.
       myLibrary.splice(index, 1); //  Remove it from our array so it does not render again.
+      window.localStorage.setItem('library', JSON.stringify(myLibrary)); // Update our LocalStorage
     });
   });
 
